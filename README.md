@@ -55,4 +55,4 @@ This script is published under [CC BY 4.0](https://creativecommons.org/licenses/
 
 ## Additional info
 
-I recommend checking out Daniel Rudrich's script for real-time visualizations of EnergyVisualizer's data via OSC: https://github.com/DanielRudrich/EnergyVisualizerOscDemo
+I recommend checking out Daniel Rudrich's script for real-time visualizations of EnergyVisualizer's data via OSC in Processing: https://github.com/DanielRudrich/EnergyVisualizerOscDemo
