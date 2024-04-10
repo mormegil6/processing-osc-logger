@@ -47,14 +47,12 @@ void oscEvent (OscMessage message) {
       rms2[idx][i] = (float) data[i];
     }
     if (play == 1.0) {
-      rms2[idx][426] = System.nanoTime();
+      rms2[idx][426] = System.nanoTime(); // timestamp in nanoseconds
       tmstmp = rms2[idx][426];
       //print(Arrays.toString(rms2[idx]));
       Arrays.stream(rms2[idx]).forEach(e -> output.print(df.format(e) + ";" ));
       output.println("");
-      //output.println(Arrays.toString(rms2[idx]).replaceAll("\\[|\\]", "")); //format("%.0f", tmstmp)
       idx++;
-      //
       played = 1;
     }
     if (play == 0.0 && played == 1) {
