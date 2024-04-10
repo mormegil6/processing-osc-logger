@@ -1,92 +1,58 @@
 # Processing - OSC logger
 
-This script allows for logging OSC messages from IEM EnergyVisualizer into a CSV file.
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://git.pg.edu.pl/p829296/processing-osc-logger.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://git.pg.edu.pl/p829296/processing-osc-logger/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
+This script allows for logging OSC messages from [IEM EnergyVisualizer](https://plugins.iem.at/docs/plugindescriptions/#energyvisualizer) into a CSV file.
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+This script allows for logging all the 426 values from the points on the [EnergyVisualizer's grid](https://plugins.iem.at/docs/energyvisualizergrid/) as well as the timestamp (in nanoseconds) into a CSV file. This could be used for a non-realtime processing of the ambisonic soundfield obtained with the EnergyVisualizer VST plugin and recorded with this script.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## Getting started & installation
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+1. Install [Processing IDE](https://processing.org/)
+2. Download the script from this repository and open it via the Processing IDE
+2. Install the VST host of your choice
+    - Set up the DAW to message via OSC the beginning of the layback to the local port according to the listening port in the Processing script (by default the port number is 12001)
+3. Install [IEM Plug-in Suite](https://plugins.iem.at/)
+    - Set up EnergyVisualizer OSC to send messages to the listening port in the Processing script (by default the port number is 12001)
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## Usage example
+
+This example uses [Reaper DAW](https://www.reaper.fm/) by [Cockos](https://www.cockos.com/index.php).
+
+1. Open `Options->Preferences`
+2. Navigate to `Control/OSC/Web settings` page
+3. Under `Control surfaces/OSC/Web control` click `Add`
+4. Set the following settings:
+    - Control surface mode: OSC (Open Sound Control)
+    - Device name: whatever you prefer
+    - Pattern config: Default
+    - Mode: Device IP/port [send only]
+    - Device port: 12001, Decive IP: 127.0.0.1
+    - "Allow binding messages to REAPER actions and FX learn": leave unchecked
+    - Outgoing max packet size: 1024, Wait between packets: 1 ms (although the default 10 ms might be just fine)
+    - click `OK`
+5. Set up an ambisonic track with IEM EnergyVisualizer
+6. Set up EnergyVisualizer's OSC settings to IP 127.0.0.1 and port 12001. The interval value might be lowered to the minimum, so 1 ms.
+7. Run the OSC logger script from Processing IDE.
+8. Start the playback of the recording in Reaper. The logger will automatically create a CSV file in the script's home folder. The logger will stop autimatically with the playback. After stopping the logger, the timestamp and log size values will display 0 as in the initial state. Resuming playback will start new log and it will write up the file if it is present in the folder, so in order to avoid data loss, rename the file or copy it to another folder. Otherwise, the data will be lost.
+
+#### Reaper Preferences, Control surfaces/OSC/Web control
+![Reaper Preferences, Control surfaces/OSC/Web control](https://i.ibb.co/6WbvZLg/2024-04-10-14-39-35-REAPER-v7-14-Registered-to-Bart-omiej-Mr-z-Licensed-for-personal-small-busine.png)
+
+#### EnergyVisualizer's OSC settings
+![EnergyVisualizer's OSC settings](https://i.ibb.co/x7L9vTW/2024-04-10-14-46-43-unsaved-project-REAPER-v7-14-Registered-to-Bart-omiej-Mr-z-Licensed-for-p.png)
+
+#### OSC logger
+![OSC logger](https://i.ibb.co/z2Dj5qZ/2024-04-10-14-51-07.png)
 
 ## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+All questions, comments and insights please address to me via e-mail: bartlomiej.mroz@pg.edu.pl
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+This script is published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license.
+
+## Additional info
+
+I recommend checking out Daniel Rudrich's script for real-time visualizations of EnergyVisualizer's data via OSC: https://github.com/DanielRudrich/EnergyVisualizerOscDemo
