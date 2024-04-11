@@ -56,4 +56,5 @@ This script is published under [CC BY 4.0](https://creativecommons.org/licenses/
 ## Additional info
 
 I recommend checking out Daniel Rudrich's script for real-time visualizations of EnergyVisualizer's data via OSC in Processing: https://github.com/DanielRudrich/EnergyVisualizerOscDemo
-Another interesting example of using EnergyVisualizer with OSC to trigger visual effects is this TouchDesigner demo: spatialmedialab.org/touchdesigner-x-iem-template/
+
+Another interesting example of using EnergyVisualizer with OSC to trigger visual effects is this TouchDesigner demo: https://spatialmedialab.org/touchdesigner-x-iem-template/
