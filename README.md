@@ -60,9 +60,9 @@ This example uses [Reaper DAW](https://www.reaper.fm/) by [Cockos](https://www.c
 
 ![OSC logger](https://i.ibb.co/z2Dj5qZ/2024-04-10-14-51-07.png)
 
-## Support
+## Contact
 
-All questions, comments and insights please address to me via e-mail: bartlomiej.mroz@pg.edu.pl
+Bartłomiej Mróz · bartlomiej.mroz@pg.edu.pl · [bmroz.eu](https://bmroz.eu) · Department of Multimedia Systems, Gdańsk University of Technology
 
 ## License
 
