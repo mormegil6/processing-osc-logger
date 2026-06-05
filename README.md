@@ -60,16 +60,16 @@ This example uses [Reaper DAW](https://www.reaper.fm/) by [Cockos](https://www.c
 
 ![OSC logger](https://i.ibb.co/z2Dj5qZ/2024-04-10-14-51-07.png)
 
-## Contact
-
-Bartłomiej Mróz · bartlomiej.mroz@pg.edu.pl · Department of Multimedia Systems, Gdańsk University of Technology · [bmroz.eu](https://bmroz.eu)
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Additional info
 
 I recommend checking out Daniel Rudrich's script for real-time visualizations of EnergyVisualizer's data via OSC in Processing: https://github.com/DanielRudrich/EnergyVisualizerOscDemo
 
 Another interesting example of using EnergyVisualizer with OSC to trigger visual effects is this TouchDesigner demo: https://spatialmedialab.org/touchdesigner-x-iem-template/
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contact
+
+Bartłomiej Mróz · bartlomiej.mroz@pg.edu.pl · Department of Multimedia Systems, Gdańsk University of Technology · [bmroz.eu](https://bmroz.eu)
