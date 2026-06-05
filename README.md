@@ -1,5 +1,7 @@
 # Processing - OSC logger
 
+[![CC BY 4.0][cc-by-shield]][cc-by]
+
 This script allows for logging OSC messages from [IEM EnergyVisualizer](https://plugins.iem.at/docs/plugindescriptions/#energyvisualizer) into a CSV file.
 
 ## Description
@@ -63,8 +65,6 @@ This example uses [Reaper DAW](https://www.reaper.fm/) by [Cockos](https://www.c
 All questions, comments and insights please address to me via e-mail: bartlomiej.mroz@pg.edu.pl
 
 ## License
-
-[![CC BY 4.0][cc-by-shield]][cc-by]
 
 This work is licensed under a
 [Creative Commons Attribution 4.0 International License][cc-by].
