@@ -62,7 +62,7 @@ This example uses [Reaper DAW](https://www.reaper.fm/) by [Cockos](https://www.c
 
 ## Contact
 
-Bartłomiej Mróz · bartlomiej.mroz@pg.edu.pl · [bmroz.eu](https://bmroz.eu) · Department of Multimedia Systems, Gdańsk University of Technology
+Bartłomiej Mróz · bartlomiej.mroz@pg.edu.pl · Department of Multimedia Systems, Gdańsk University of Technology · [bmroz.eu](https://bmroz.eu)
 
 ## License
 
